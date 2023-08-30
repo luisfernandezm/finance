@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <h1 class="display-4" >Quote Stock Prices</h1>
+    <form action="/quote" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="symbol" name="symbol" placeholder="Symbol" type="text">
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="shares" name="shares" placeholder="Shares" type="number">
+        </div>
+        <button class="btn btn-primary" type="submit">Quote</button>
+    </form>
+    {% if quote %}
+        <h3>{{ quote['name']}} ({{ quote['symbol'] }})</h3>
+        <p>Price: {{ quote['price'] | usd }}</p>
+    {% endif %}
+{% endblock %}
